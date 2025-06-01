@@ -11,12 +11,18 @@ import {CarComponent} from '../car/car.component';
 })
 export class CarsComponent {
 
-  canAddCar: boolean = false;
+  addCarStatus: string = '';
+  inputText: string = '';
 
   constructor() {
-    setTimeout(() => {
-      this.canAddCar = true;
-    }, 4000);
+  }
+
+  addCar() {
+    this.addCarStatus = 'Машина добавлена'
+  }
+
+  onKeyUp(event: Event) {
+    // console.log(event.)
   }
 
 }
