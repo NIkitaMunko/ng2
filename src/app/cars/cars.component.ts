@@ -1,10 +1,12 @@
 import {Component} from '@angular/core';
 import {CarComponent} from '../car/car.component';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-cars',
   imports: [
-    CarComponent
+    CarComponent,
+    FormsModule
   ],
   templateUrl: './cars.component.html',
   styleUrl: './cars.component.css'
@@ -12,7 +14,7 @@ import {CarComponent} from '../car/car.component';
 export class CarsComponent {
 
   addCarStatus: string = '';
-  inputText: string = '';
+  inputText: string = 'Default text';
 
   constructor() {
   }
