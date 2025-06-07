@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 
 @Component({
@@ -11,18 +11,16 @@ import {FormsModule} from "@angular/forms";
 })
 export class AddCarComponent {
 
-  carName: string = '';
-  carYear: number = 2017;
   @Output('onAddCar') carEmitter = new EventEmitter<{name: string, year: number}>();
 
-  addCar() {
+  addCar(carNameEl: HTMLInputElement, carYearInput: HTMLInputElement): void {
     this.carEmitter.emit({
-      name: this.carName,
-      year: this.carYear
+      name: carNameEl.value,
+      year: +carYearInput.value,
     })
 
-    this.carName = '';
-    this.carYear = 2017
+    carNameEl.value = '';
+    carYearInput.value = '2017';
   }
 
 }
