@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CarComponent} from '../car/car.component';
 import {NgForOf} from '@angular/common';
+import {AddCarComponent} from '../add-car/add-car.component';
 
 @Component({
   selector: 'app-cars',
@@ -9,14 +10,12 @@ import {NgForOf} from '@angular/common';
     FormsModule,
     CarComponent,
     NgForOf,
+    AddCarComponent,
   ],
   templateUrl: './cars.component.html',
   styleUrl: './cars.component.css'
 })
 export class CarsComponent {
-
-  carName: string = '';
-  carYear: number = 2017;
 
   cars: {name: string, year: number}[] = [{
     name: 'Ford',
@@ -32,13 +31,8 @@ export class CarsComponent {
   constructor() {
   }
 
-  addCar() {
-    this.cars.push({
-      name: this.carName,
-      year: this.carYear,
-    });
-    this.carName = '';
-    this.carYear = 2017
+  updateCarList(car: {name: string, year: number}) {
+    this.cars.push(car);
   }
 
 }
