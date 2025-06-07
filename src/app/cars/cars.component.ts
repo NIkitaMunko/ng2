@@ -1,18 +1,14 @@
 import {Component} from '@angular/core';
-import {CarComponent} from '../car/car.component';
 import {FormsModule} from '@angular/forms';
-import {DatePipe, NgClass, NgForOf, NgIf, NgStyle} from '@angular/common';
+import {CarComponent} from '../car/car.component';
+import {NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-cars',
   imports: [
-    CarComponent,
     FormsModule,
-    NgIf,
+    CarComponent,
     NgForOf,
-    NgStyle,
-    NgClass,
-    DatePipe
   ],
   templateUrl: './cars.component.html',
   styleUrl: './cars.component.css'
@@ -20,22 +16,29 @@ import {DatePipe, NgClass, NgForOf, NgIf, NgStyle} from '@angular/common';
 export class CarsComponent {
 
   carName: string = '';
-  addCarStatus: boolean = false;
-  cars = ['Ford', 'Audi', 'BMW', 'Mazda', 'Lada', 'Bently']
-  dates = [
-    new Date(2015, 3, 4),
-    new Date(2011, 4, 4),
-    new Date(2017, 5, 4),
-    new Date(2010, 7, 4),
-  ];
+  carYear: number = 2017;
+
+  cars: {name: string, year: number}[] = [{
+    name: 'Ford',
+    year: 2015
+  }, {
+    name: 'Mazda',
+    year: 2010
+  }, {
+    name: 'Audi',
+    year: 2017
+  }];
 
   constructor() {
   }
 
   addCar() {
-    this.addCarStatus = true;
-    this.cars.push(this.carName);
+    this.cars.push({
+      name: this.carName,
+      year: this.carYear,
+    });
     this.carName = '';
+    this.carYear = 2017
   }
 
 }
