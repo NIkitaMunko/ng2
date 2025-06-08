@@ -1,16 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'carFilter'
+  name: 'carFilter',
+  pure: false
 })
 export class CarFilterPipe implements PipeTransform {
 
-  transform(carList: any[], searchString: string = '', fieldName: string = 'name'): any[] {
-    if (!carList || !searchString.trim()) return carList;
+  transform(carList: any, searchString: string, fieldName: string) {
+    console.log('Filter pipe started!')
 
-    return carList.filter((car: any) =>
-      car[fieldName]?.toLowerCase().includes(searchString.toLowerCase())
-    );
+    if (carList.length === 0 || searchString === '') return carList;
+    return carList.filter((car: any) => car[fieldName].toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
 }
