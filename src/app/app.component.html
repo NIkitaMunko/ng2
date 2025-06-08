@@ -1,32 +1,28 @@
-<!--<div class="container">-->
-<!--  <div class="row">-->
-<!--    <div class="col-xs-12">-->
-<!--      <app-cars></app-cars>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<div class="col-xs-8 col-xs-offset-2">
+  <form>
 
-<!--<div app-cars></div>-->
-<!--<div class="app-cars"></div>-->
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Пароль</label>
+      <input type="password" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Выберите страну</label>
+      <select class="form-control">
+        <option value="ru">Россия</option>
+        <option value="by">Белоруссия</option>
+        <option value="ua">Украина</option>
+      </select>
+    </div>
+    <div class="radio" *ngFor="let ans of answers">
+      <label>
+        <input type="radio" [value]="ans.type"> {{ ans.text }}
+      </label>
+    </div>
+    <button class="btn btn-success" type="submit">Сохранить</button>
 
-<!--<div class="container">-->
-<!--  <div class="col-xs-8 col-xs-offset-2">-->
-
-<!--    <h3 [appBackground]="'red'" [defaultColor]="'blue'">{{headerText}}</h3>-->
-
-<!--    <ul class="list-group">-->
-<!--      <li *ngFor="let item of items" (click)="onClick(item)" class="list-group-item">-->
-<!--        {{item}}-->
-<!--      </li>-->
-<!--    </ul>-->
-
-<!--    <div [ngSwitch]="current">-->
-<!--      <p *ngSwitchCase="1">1</p>-->
-<!--      <p *ngSwitchCase="2">2</p>-->
-<!--      <p *ngSwitchCase="3">3</p>-->
-<!--      <p *ngSwitchDefault>default</p>-->
-<!--    </div>-->
-
-<!--  </div>-->
-<!--</div>-->
-
+  </form>
+</div>
