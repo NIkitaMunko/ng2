@@ -88,8 +88,12 @@ export class AppComponent {
     {name: 'BWM', descr: 'WFM 6'},
   ];
 
-
   searchCar: string = '';
+
+  title: string = '';
+  // asyncTitle: any = Observable.of('Async tite 3seconds')
+  //   .delay(3000)
+  //   .subscribe((str: any) => this.title = str);
 
   addCar() {
     this.cars.push({
