@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
-import {CarsComponent} from './cars/cars.component';
+import {BackgroundDirective} from './directives/background.directive';
 
 @Component({
   selector: 'app-root',
   imports: [
-    CarsComponent
+    BackgroundDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ng2-course-theory';
+  headerText = 'Создание новой директивы'
 }
