@@ -9,7 +9,11 @@ import {NgForOf} from '@angular/common';
     NgForOf,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  // styleUrl: './app.component.css',
+  styles: [`
+  input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }`]
 })
 export class AppComponent {
 
