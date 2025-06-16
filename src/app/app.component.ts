@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {FormsModule, NgForm} from '@angular/forms';
-import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {JsonPipe, NgClass, NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,7 @@ import {NgClass, NgForOf, NgIf} from '@angular/common';
     NgForOf,
     NgIf,
     NgClass,
+    JsonPipe,
   ],
   templateUrl: './app.component.html',
   // styleUrl: './app.component.css',
@@ -28,7 +29,21 @@ export class AppComponent {
   defaultAnswer  = "no";
   defaultCountry = "ua";
 
+  formData = {};
+  isSubmited = false;
+
+  addRandEmail() {
+    const randEmail = "asd@gmail.com"
+    this.form.form.patchValue({
+      user: {
+        email: randEmail,
+      }
+    });
+  }
+
   submitForm() {
-    console.log('Submitted!', this.form);
+    this.isSubmited = true;
+    this.formData = this.form.value;
+    this.form.reset();
   }
 }
