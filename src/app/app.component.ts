@@ -1,19 +1,17 @@
 import {Component, ViewChild} from '@angular/core';
 import {FormsModule, NgForm} from '@angular/forms';
-import {NgForOf} from '@angular/common';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-root',
   imports: [
     FormsModule,
     NgForOf,
+    NgIf,
+    NgClass,
   ],
   templateUrl: './app.component.html',
   // styleUrl: './app.component.css',
-  styles: [`
-  input.ng-invalid.ng-touched {
-    border: 1px solid red;
-  }`]
 })
 export class AppComponent {
 
