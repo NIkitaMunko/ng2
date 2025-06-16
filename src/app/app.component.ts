@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {Component, ViewChild} from '@angular/core';
+import {FormsModule, NgForm} from '@angular/forms';
 import {NgForOf} from '@angular/common';
 
 @Component({
@@ -12,6 +12,9 @@ import {NgForOf} from '@angular/common';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+
+  @ViewChild('form') form!: NgForm;
+
   answers = [{
     type: 'yes',
     text: 'Да'
@@ -19,4 +22,8 @@ export class AppComponent {
     type: 'no',
     text: 'Нет'
   }]
+
+  submitForm() {
+    console.log('Submitted!', this.form);
+  }
 }
