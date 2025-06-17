@@ -1,49 +1,74 @@
-import {Component, ViewChild} from '@angular/core';
-import {FormsModule, NgForm} from '@angular/forms';
-import {JsonPipe, NgClass, NgForOf, NgIf} from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { NgClass, NgForOf, NgIf } from "@angular/common";
 
 @Component({
-  selector: 'app-root',
-  imports: [
-    FormsModule,
-    NgForOf,
-    NgIf,
-    NgClass,
-    JsonPipe,
-  ],
-  templateUrl: './app.component.html',
-  // styleUrl: './app.component.css',
+    selector: 'app-root',
+    standalone: true,
+    imports: [
+        ReactiveFormsModule,
+        NgClass,
+        NgForOf,
+        NgIf
+    ],
+    templateUrl: './app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+    answers = [{
+        type: 'yes',
+        text: 'Да'
+    }, {
+        type: 'no',
+        text: 'Нет'
+    }];
 
-  @ViewChild('form') form!: NgForm;
+    charsCount = 5;
 
-  answers = [{
-    type: 'yes',
-    text: 'Да'
-  }, {
-    type: 'no',
-    text: 'Нет'
-  }]
+    form!: FormGroup;
 
-  defaultAnswer  = "no";
-  defaultCountry = "ua";
+    ngOnInit() {
+        this.form = new FormGroup({
+            user: new FormGroup({
+                email: new FormControl<string>('', {
+                    validators: [Validators.required, Validators.email],
+                    asyncValidators: [this.checkForEmail.bind(this)]
+                }),
+                pass: new FormControl<string>('', [Validators.required, this.checkForLength.bind(this)])
+            }),
+            country: new FormControl<string>('ru'),
+            answer: new FormControl<string>('no')
+        });
+    }
 
-  formData = {};
-  isSubmited = false;
+    onSubmit() {
+        console.log('Submited!', this.form);
+    }
 
-  addRandEmail() {
-    const randEmail = "asd@gmail.com"
-    this.form.form.patchValue({
-      user: {
-        email: randEmail,
-      }
-    });
-  }
+    checkForLength(control: AbstractControl): ValidationErrors | null {
+        if (control.value.length <= this.charsCount) {
+            return {
+                'lengthError': true
+            };
+        }
+        return null;
+    }
 
-  submitForm() {
-    this.isSubmited = true;
-    this.formData = this.form.value;
-    this.form.reset();
-  }
+    checkForEmail(control: AbstractControl): Promise<ValidationErrors | null> {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                if (control.value === 'test@mail.ru') {
+                    resolve({
+                        'emailIsUsed': true
+                    });
+                } else {
+                    resolve(null);
+                }
+            }, 3000);
+        });
+    }
+
+    // Helper method to safely access form controls
+    getControl(path: string): AbstractControl | null {
+        return this.form.get(path);
+    }
 }
