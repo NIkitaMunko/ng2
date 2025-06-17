@@ -1,20 +1,24 @@
 import { Component } from '@angular/core';
+import { CarsService } from './cars.service';
 import {NgForOf} from "@angular/common";
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    imports: [
-        NgForOf
-    ],
-    templateUrl: './app.component.html'
+  selector: 'app-root',
+  imports: [
+    NgForOf
+  ],
+  templateUrl: './app.component.html'
 })
-export class AppComponent    {
-    cars = [
-        {
-            name: 'Ford',
-            color: 'white',
-            id: 1
-        }
-    ];
+export class AppComponent {
+  cars = [];
+
+  constructor(private carsService: CarsService) {}
+
+  loadCars() {
+    this.carsService
+      .getCars()
+      .subscribe((response: any) => {
+        console.log(response);
+      });
+  }
 }
