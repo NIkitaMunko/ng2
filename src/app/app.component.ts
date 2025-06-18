@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CarsService } from './cars.service';
 import {NgForOf} from "@angular/common";
+import {FormsModule} from '@angular/forms';
 
 interface Cars {
   name: string;
@@ -11,12 +12,15 @@ interface Cars {
 @Component({
   selector: 'app-root',
   imports: [
-    NgForOf
+    NgForOf,
+    FormsModule,
   ],
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  standalone: true,
 })
 export class AppComponent {
   cars: Cars[] = [];
+  carName: string = '';
 
   constructor(private carsService: CarsService) {}
 
@@ -26,5 +30,14 @@ export class AppComponent {
       .subscribe((cars: Cars[]) => {
         this.cars = cars;
       });
+  }
+
+  addCar() {
+    this.carsService
+      .addCar(this.carName)
+      .subscribe((car: Cars) => {
+        this.cars.push(car);
+      });
+    this.carName = '';
   }
 }
