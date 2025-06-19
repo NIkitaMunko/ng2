@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -9,7 +9,11 @@ export class CarsService {
   constructor(private http: HttpClient) {}
 
   getCars() {
-    return this.http.get('http://localhost:3000/cars')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json; charset=UTF-8'
+    });
+
+    return this.http.get('http://localhost:3000/cars', {headers: headers})
       .pipe(
         map((response: any) => response)
       );
@@ -20,7 +24,12 @@ export class CarsService {
       name: carName,
       color: 'blue'
     };
-    return this.http.post('http://localhost:3000/cars', data)
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json; charset=UTF-8'
+    });
+
+    return this.http.post('http://localhost:3000/cars', data, {headers: headers})
       .pipe(
         map((response: any) => response)
       )
