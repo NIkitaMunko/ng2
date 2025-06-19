@@ -2,12 +2,12 @@
   "cars": [
     {
       "name": "Ford",
-      "color": "white",
+      "color": "green",
       "id": 1
     },
     {
       "name": "asd",
-      "color": "blue",
+      "color": "grey",
       "id": 2
     },
     {

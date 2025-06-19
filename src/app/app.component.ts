@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CarsService } from './cars.service';
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgStyle} from "@angular/common";
 import {FormsModule} from '@angular/forms';
 
 interface Cars {
@@ -14,11 +14,20 @@ interface Cars {
   imports: [
     NgForOf,
     FormsModule,
+    NgStyle,
   ],
   templateUrl: './app.component.html',
   standalone: true,
 })
 export class AppComponent {
+  colors = [
+    'red',
+    'blue',
+    'green',
+    'pink',
+    'yellow',
+    'grey'
+  ];
   cars: Cars[] = [];
   carName: string = '';
 
@@ -39,5 +48,17 @@ export class AppComponent {
         this.cars.push(car);
       });
     this.carName = '';
+  }
+
+  getRandColor() {
+    const num = Math.round(Math.random() * (this.colors.length - 1));
+    return this.colors[num];
+  }
+
+  setNewColor(car: Cars) {
+    this.carsService.changeColor(car, this.getRandColor())
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 }
