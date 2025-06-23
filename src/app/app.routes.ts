@@ -1,9 +1,16 @@
-  import { Routes } from '@angular/router';
-  import {CarsPageComponent} from './cars-page/cars-page.component';
-  import { HomePageComponent } from './home-page/home-page.component';
+import {RouterModule, Routes} from '@angular/router';
+import {CarsPageComponent} from './cars-page/cars-page.component';
+import {HomePageComponent} from './home-page/home-page.component';
+import {NgModule} from '@angular/core';
 
 export const routes: Routes = [
-  // localhost:4200/cars
-  { path: 'cars', component: CarsPageComponent },
-  { path: '', component: HomePageComponent },
+  {path: 'cars', component: CarsPageComponent},
+  {path: '', component: HomePageComponent},
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutes {
+}
