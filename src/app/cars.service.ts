@@ -46,4 +46,11 @@ export class CarsService {
   deleteCar(car: any) {
     return this.http.delete(`http://localhost:3000/cars/${car.id}`);
   }
+
+  getAppTitle() {
+    return this.http.get<{ value: string }>('http://localhost:3000/title')
+      .pipe(
+        map(response => response.value)
+      );
+  }
 }

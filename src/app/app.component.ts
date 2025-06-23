@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CarsService } from './cars.service';
-import {NgForOf, NgStyle} from "@angular/common";
+import {AsyncPipe, NgForOf, NgStyle} from "@angular/common";
 import {FormsModule} from '@angular/forms';
 
 interface Cars {
@@ -15,11 +15,12 @@ interface Cars {
     NgForOf,
     FormsModule,
     NgStyle,
+    AsyncPipe,
   ],
   templateUrl: './app.component.html',
   standalone: true,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   colors = [
     'red',
     'blue',
@@ -30,8 +31,13 @@ export class AppComponent {
   ];
   cars: Cars[] = [];
   carName: string = '';
+  appTitle: any;
 
   constructor(private carsService: CarsService) {}
+
+  ngOnInit(): void {
+        this.appTitle = this.carsService.getAppTitle();
+  }
 
   loadCars() {
     this.carsService
