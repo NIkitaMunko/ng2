@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CarsService } from '../cars.service';
 import {NgForOf} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import {RouterLink, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-cars-page',
   templateUrl: './cars-page.component.html',
   imports: [
     NgForOf,
-    RouterLink
+    RouterLink,
+    RouterOutlet
   ],
   styleUrls: ['./cars-page.component.css']
 })
