@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-car-page',
   imports: [
-    RouterLink
   ],
   templateUrl: './car-page.component.html',
   styleUrl: './car-page.component.css'
