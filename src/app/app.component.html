@@ -4,9 +4,13 @@
 >Переключить</button>
 <hr>
 <div
-  [@divTrigger] = "'show'"
+  @divTrigger
+
+  (@divTrigger.start)="onAnimationStart($event)"
+  (@divTrigger.done)="onAnimationDone($event)"
+
   *ngIf="isVisible"
   class="alert alert-danger"
 >
-  als;djf ad;soifhj hfoeu hdljkfh laskd
+  als;djf ad;soifhj hfoeu hdljkfh lask d
 </div>
