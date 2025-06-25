@@ -1,3 +1,5 @@
-<div class="alert alert-info">Эта машина продана.</div>
-
-<ng-content></ng-content>
+<h1>{{title}}</h1>
+<div>
+  <span *ngIf="isCarVisible">Car is visible</span>
+  <span *ngIf="!isCarVisible">Nothing to show</span>
+</div>

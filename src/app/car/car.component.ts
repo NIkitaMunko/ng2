@@ -1,26 +1,22 @@
-import {Component, ContentChild, ElementRef, Input, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-car',
-  imports: [],
   templateUrl: './car.component.html',
-  // template: `
-  //   <h1>Single car</h1>
-  //   <p>Lorem10</p>
-  // `,
-  styleUrl: './car.component.css'
-  // styles: [`
-  //   h1 {
-  //     color: aqua;
-  //   }
-  // `]
+  imports: [
+    NgIf
+  ],
+  styleUrls: ['./car.component.css']
 })
-export class CarComponent {
-  @Input('carItem') car!: { name: string; year: number };
-  @ContentChild('carHeading') carHeading!: ElementRef;
+export class CarComponent implements OnInit {
 
-  ngAfterViewInit() {
-    console.log(this.carHeading);
+  isCarVisible = true;
+  title = 'My car header';
+
+  constructor() { }
+
+  ngOnInit() {
   }
-}
 
+}
