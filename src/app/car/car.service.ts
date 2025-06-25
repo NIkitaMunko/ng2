@@ -1,3 +1,5 @@
+import {delay, Observable, of} from 'rxjs';
+
 export class CarService {
   private isVisible = true;
 
@@ -11,6 +13,12 @@ export class CarService {
 
   getVisibility() {
     return this.isVisible;
+  }
+
+  getCarName(): Observable<string> {
+    return of('Ford').pipe(
+      delay(100)
+    );
   }
 
 }
