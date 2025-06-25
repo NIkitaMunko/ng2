@@ -2,17 +2,11 @@
   (click)="isVisible = !isVisible"
   class="btn btn-primary"
 >Переключить</button>
-<!--<hr>-->
-<!--<div-->
-<!--  [@divTrigger] = "'show'"-->
-<!--  *ngIf="isVisible"-->
-<!--  class="alert alert-danger"-->
-<!--&gt;-->
-<!--  als;djf ad;soifhj hfoeu hdljkfh laskd-->
-<!--</div>-->
-
 <hr>
 <div
-  [@changeWith]="isVisible ? 'a' : 'b'"
-  style="height: 250px; width: 200px; background-color: red;"
-></div>
+  [@divTrigger] = "'show'"
+  *ngIf="isVisible"
+  class="alert alert-danger"
+>
+  als;djf ad;soifhj hfoeu hdljkfh laskd
+</div>
